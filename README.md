@@ -18,7 +18,7 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 1. Activate the virtual environment: `$ . venv/bin/activate`
 1. Install development requirements: `$ pip install -r requirements.txt`
 
-:bulb: Starting new development now? Create a new branch: `$ git checkout -b my-new-branch`. If you are planning on contributing back to the main Ansible repostiry, fork the Ansible repository into your own GitHub account and developing against that.
+:bulb: Starting new development now? Fixing a bug? Create a new branch: `$ git checkout -b my-new-branch`. If you are planning on contributing back to the main Ansible repostiry, fork the Ansible repository into your own GitHub account and developing against your new non-devel branch in your fork. When you believe you have a good working code change, submit a pull request to the Ansible repository.
 
 ## New module development
 
@@ -27,47 +27,47 @@ If you are creating a new module that doesn't exist, you would start working on 
 1. Navigate to the directory that you want to develop your new module in. E.g. `$ cd cd lib/ansible/modules/cloud/azure/`
 1. Create your new module file: `$ touch my_new_test_module.py`
 1. Paste this simple into the new module file: (explanation below)
-```python
-#!/usr/bin/env python
+        ```python
+        #!/usr/bin/env python
 
-from ansible.module_utils.basic import AnsibleModule
+        from ansible.module_utils.basic import AnsibleModule
 
-class MyModule:
+        class MyModule:
 
-    def __init__(self):
-        self.module_args = dict(
-            name=dict(type='str', required=True),
-            new=dict(type='bool', required=False, default=False)
-        )
+            def __init__(self):
+                self.module_args = dict(
+                    name=dict(type='str', required=True),
+                    new=dict(type='bool', required=False, default=False)
+                )
 
-        self.result = dict(
-            changed=False,
-            state=dict()
-        )
+                self.result = dict(
+                    changed=False,
+                    state=dict()
+                )
 
-        self.module = AnsibleModule(
-            argument_spec=self.module_args,
-            supports_check_mode=True
-        )
+                self.module = AnsibleModule(
+                    argument_spec=self.module_args,
+                    supports_check_mode=True
+                )
 
-        self.result['state'] = dict(
-            original_message=self.module.params['name'],
-            new_message='goodbye'
-        )
+                self.result['state'] = dict(
+                    original_message=self.module.params['name'],
+                    new_message='goodbye'
+                )
 
-        if self.module.params['new']:
-            self.result['changed'] = True
+                if self.module.params['new']:
+                    self.result['changed'] = True
 
-        if self.module.params['name'] == 'fail me':
-            self.module.fail_json(msg='You requested this to fail', **self.result)
+                if self.module.params['name'] == 'fail me':
+                    self.module.fail_json(msg='You requested this to fail', **self.result)
 
-        self.module.exit_json(**self.result)
+                self.module.exit_json(**self.result)
 
-def main():
-    MyModule()
+        def main():
+            MyModule()
 
-if __name__ == '__main__':
-    main()
+        if __name__ == '__main__':
+            main()
 ```
 1. Create an arguments file with the following content: (explanation below)
 ```json
