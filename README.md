@@ -103,12 +103,12 @@ If you want to test your new module, you can now consume it with an Ansible play
 - Add the following to the new playbook file
 ```yaml
 ---
-- name: test play1
+- name: test my new module
   connection: local
   hosts: localhost
 
   tasks:
-    - name: test my module
+    - name: run the new module
       my_new_test_module:
         name: 'hello'
         new: true
