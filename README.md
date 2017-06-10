@@ -1,5 +1,12 @@
 # Ansible Development by Example
 
+- [Why?](#why)
+- [What is this?](#what-is-this)
+- [Environment setup](#environment-setup)
+- [New module development](#new-module-development)
+- [Local/direct module testing](#localdirect-module-testing)
+- [Playbook module testing](#playbook-module-testing)
+
 ### Why?
 
 Ansible is an awesome tool for configuration management. It is also a highly utilized one, and there are so many ways to contribute as a community.
@@ -114,6 +121,8 @@ This should be working output that resembles something like the following:
 ```
 {"changed": true, "state": {"original_message": "hello", "new_message": "goodbye"}, "invocation": {"module_args": {"name": "hello", "new": true}}}
 ```
+
+:bulb: The arguments file is just a basic json config file that you can use to pass the module your parameters to run the module itself.
 
 # Playbook module testing
 
