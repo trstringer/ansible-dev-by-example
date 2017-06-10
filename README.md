@@ -27,6 +27,7 @@ If you are creating a new module that doesn't exist, you would start working on 
 1. Navigate to the directory that you want to develop your new module in. E.g. `$ cd cd lib/ansible/modules/cloud/azure/`
 1. Create your new module file: `$ touch my_new_test_module.py`
 1. Paste this simple into the new module file: (explanation below)
+
         ```python
         #!/usr/bin/env python
 
@@ -69,7 +70,9 @@ If you are creating a new module that doesn't exist, you would start working on 
         if __name__ == '__main__':
             main()
         ```
+
 1. Create an arguments file with the following content: (explanation below)
+
         ```json
         {
           "ANSIBLE_MODULE_ARGS": {
