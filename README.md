@@ -75,6 +75,8 @@ if __name__ == '__main__':
 
 # Local/direct module testing
 
+You may want to test the module on the local machine without targeting a remote host. This is a great way to quickly and easily debug a module that can run locally.
+
 - Create an arguments file with the following content: (explanation below)
 ```json
 {
