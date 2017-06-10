@@ -24,64 +24,62 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 
 If you are creating a new module that doesn't exist, you would start working on a whole new file. Here is an example:
 
-1. Navigate to the directory that you want to develop your new module in. E.g. `$ cd cd lib/ansible/modules/cloud/azure/`
-1. Create your new module file: `$ touch my_new_test_module.py`
-1. Paste this simple into the new module file: (explanation below)
-        ```
-        #!/usr/bin/env python
+- Navigate to the directory that you want to develop your new module in. E.g. `$ cd cd lib/ansible/modules/cloud/azure/`
+- Create your new module file: `$ touch my_new_test_module.py`
+- Paste this simple into the new module file: (explanation below)
+```python
+#!/usr/bin/env python
 
-        from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule
 
-        class MyModule:
+class MyModule:
 
-            def __init__(self):
-                self.module_args = dict(
-                    name=dict(type='str', required=True),
-                    new=dict(type='bool', required=False, default=False)
-                )
+    def __init__(self):
+        self.module_args = dict(
+            name=dict(type='str', required=True),
+            new=dict(type='bool', required=False, default=False)
+        )
 
-                self.result = dict(
-                    changed=False,
-                    state=dict()
-                )
+        self.result = dict(
+            changed=False,
+            state=dict()
+        )
 
-                self.module = AnsibleModule(
-                    argument_spec=self.module_args,
-                    supports_check_mode=True
-                )
+        self.module = AnsibleModule(
+            argument_spec=self.module_args,
+            supports_check_mode=True
+        )
 
-                self.result['state'] = dict(
-                    original_message=self.module.params['name'],
-                    new_message='goodbye'
-                )
+        self.result['state'] = dict(
+            original_message=self.module.params['name'],
+            new_message='goodbye'
+        )
 
-                if self.module.params['new']:
-                    self.result['changed'] = True
+        if self.module.params['new']:
+            self.result['changed'] = True
 
-                if self.module.params['name'] == 'fail me':
-                    self.module.fail_json(msg='You requested this to fail', **self.result)
+        if self.module.params['name'] == 'fail me':
+            self.module.fail_json(msg='You requested this to fail', **self.result)
 
-                self.module.exit_json(**self.result)
+        self.module.exit_json(**self.result)
 
-        def main():
-            MyModule()
+def main():
+    MyModule()
 
-        if __name__ == '__main__':
-            main()
-        ```
-
-1. Create an arguments file with the following content: (explanation below)
-
-        ```
-        {
-          "ANSIBLE_MODULE_ARGS": {
-            "name": "hello",
-            "new": true
-          }
-        }
-        ```
-1. Ensure that you can directly execute your new module: `$ chmod 755 ./my_new_test_module.py`
-1. Run your test module locally and directly: `$ ./my_new_testmodule.py /tmp/args.json`
+if __name__ == '__main__':
+    main()
+```
+- Create an arguments file with the following content: (explanation below)
+```json
+{
+  "ANSIBLE_MODULE_ARGS": {
+    "name": "hello",
+    "new": true
+  }
+}
+```
+- Ensure that you can directly execute your new module: `$ chmod 755 ./my_new_test_module.py`
+- Run your test module locally and directly: `$ ./my_new_testmodule.py /tmp/args.json`
 
 This should be working output that resembles something like the following:
 
