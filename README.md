@@ -68,16 +68,16 @@ If you are creating a new module that doesn't exist, you would start working on 
 
         if __name__ == '__main__':
             main()
-```
+        ```
 1. Create an arguments file with the following content: (explanation below)
-```json
-{
-  "ANSIBLE_MODULE_ARGS": {
-    "name": "hello",
-    "new": true
-  }
-}
-```
+        ```json
+        {
+          "ANSIBLE_MODULE_ARGS": {
+            "name": "hello",
+            "new": true
+          }
+        }
+        ```
 1. Ensure that you can directly execute your new module: `$ chmod 755 ./my_new_test_module.py`
 1. Run your test module locally and directly: `$ ./my_new_testmodule.py /tmp/args.json`
 
