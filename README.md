@@ -27,7 +27,7 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 
 If you are creating a new module that doesn't exist, you would start working on a whole new file. Here is an example:
 
-- Navigate to the directory that you want to develop your new module in. E.g. `$ cd cd lib/ansible/modules/cloud/azure/`
+- Navigate to the directory that you want to develop your new module in. E.g. `$ cd lib/ansible/modules/cloud/azure/`
 - Create your new module file: `$ touch my_new_test_module.py`
 - Paste this simple into the new module file: (explanation below)
 ```python
