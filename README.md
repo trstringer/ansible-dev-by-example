@@ -10,7 +10,7 @@ There is no doubt that Ansible is a complex tool, with lots of inner-workings, y
 
 This documentation is a way to show step-by-step how to develop Ansible modules, both new module development as well as bug fixes and debugging.
 
-## Environment setup
+# Environment setup
 
 1. Clone the Ansible repository: `$ git clone https://github.com/ansible/ansible.git`
 1. Change directory into the repository root dir: `$ cd ansible`
@@ -23,7 +23,7 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 
 :bulb: Starting new development now? Fixing a bug? Create a new branch: `$ git checkout -b my-new-branch`. If you are planning on contributing back to the main Ansible repostiry, fork the Ansible repository into your own GitHub account and developing against your new non-devel branch in your fork. When you believe you have a good working code change, submit a pull request to the Ansible repository.
 
-## New module development
+# New module development
 
 If you are creating a new module that doesn't exist, you would start working on a whole new file. Here is an example:
 
@@ -72,6 +72,9 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+# Local/direct module testing
+
 - Create an arguments file with the following content: (explanation below)
 ```json
 {
@@ -89,6 +92,31 @@ This should be working output that resembles something like the following:
 ```
 {"changed": true, "state": {"original_message": "hello", "new_message": "goodbye"}, "invocation": {"module_args": {"name": "hello", "new": true}}}
 ```
+
+# Playbook module testing
+
+If you want to test your new module, you can now consume it with an Ansible playbook.
+
+- Create a playbook in any directory: `$ touch testmod.yml`
+- Add the following to the new playbook file
+```yaml
+---
+- name: test play1
+  connection: local
+  hosts: localhost
+
+  tasks:
+    - name: test my module
+      my_new_test_module:
+        name: 'hello'
+        new: true
+      register: testout
+
+    - name: dump test output
+      debug:
+        msg: '{{ testout }}'
+```
+- Run the playbook and analyze the output: `$ ansible-playbook ./testmod.yml`
 
 ### Explanation of module code
 
