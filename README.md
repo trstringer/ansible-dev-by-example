@@ -19,7 +19,7 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 1. Install development requirements: `$ pip install -r requirements.txt`
 1. Run the environment setup script for each new dev shell process: `$ . hacking/env-setup`
 
-:lightning: After the initial setup above, every time you are ready to start developing Ansible you should be able to just run the following from the root of the Ansible repo: `$ . venv/bin/activate && . hacking/env-setup`
+:zap: After the initial setup above, every time you are ready to start developing Ansible you should be able to just run the following from the root of the Ansible repo: `$ . venv/bin/activate && . hacking/env-setup`
 
 :bulb: Starting new development now? Fixing a bug? Create a new branch: `$ git checkout -b my-new-branch`. If you are planning on contributing back to the main Ansible repostiry, fork the Ansible repository into your own GitHub account and developing against your new non-devel branch in your fork. When you believe you have a good working code change, submit a pull request to the Ansible repository.
 
