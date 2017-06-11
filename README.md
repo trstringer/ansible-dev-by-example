@@ -150,7 +150,7 @@ If you want to test your new module, you can now consume it with an Ansible play
 ```
 - Run the playbook and analyze the output: `$ ansible-playbook ./testmod.yml`
 
-# Debugging
+# Debugging (local)
 
 If you want to break into a module and step through with the debugger, locally running the module you can do:
 
