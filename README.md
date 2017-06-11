@@ -6,7 +6,7 @@
 - [New module development](#new-module-development)
 - [Local/direct module testing](#localdirect-module-testing)
 - [Playbook module testing](#playbook-module-testing)
-- [Debugging](#debugging)
+- [Debugging (local)](#debugging-local)
 
 ### Why?
 
