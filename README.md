@@ -148,9 +148,3 @@ If you want to test your new module, you can now consume it with an Ansible play
         msg: '{{ testout }}'
 ```
 - Run the playbook and analyze the output: `$ ansible-playbook ./testmod.yml`
-
-
-### Explanation of arguments file
-
-1. More stuff
-1. Some more
