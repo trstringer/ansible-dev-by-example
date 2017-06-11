@@ -156,3 +156,12 @@ If you want to break into a module and step through with the debugger, locally r
 
 1. Set a breakpoint in the module: `import pdb; pdb.set_trace()`
 1. Run the module on the local machine: `$ python -m pdb ./my_new_test_module.py ./args.json`
+
+# Unit testing
+
+Unit tests for modules will be appropriately located in `./test/units/modules`. You must first setup your testing environment. In my case, I'm using Python 3.5.
+
+- Install the requirements (outside of your virtual environment): `$ pip3 install -r ./test/runner/requirements/units.txt`
+- To run all tests do the following: `$ ansible-test units --python 3.5` (you must run `. hacking/env-setup` prior to this)
+
+:bulb: Unit testing in Ansible uses pytest
