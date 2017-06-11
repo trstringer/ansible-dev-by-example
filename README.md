@@ -164,4 +164,4 @@ Unit tests for modules will be appropriately located in `./test/units/modules`. 
 - Install the requirements (outside of your virtual environment): `$ pip3 install -r ./test/runner/requirements/units.txt`
 - To run all tests do the following: `$ ansible-test units --python 3.5` (you must run `. hacking/env-setup` prior to this)
 
-:bulb: Unit testing in Ansible uses pytest
+:bulb: Ansible uses pytest for unit testing
