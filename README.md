@@ -6,6 +6,7 @@
 - [New module development](#new-module-development)
 - [Local/direct module testing](#localdirect-module-testing)
 - [Playbook module testing](#playbook-module-testing)
+- [Debugging](#debugging)
 
 ### Why?
 
@@ -148,3 +149,10 @@ If you want to test your new module, you can now consume it with an Ansible play
         msg: '{{ testout }}'
 ```
 - Run the playbook and analyze the output: `$ ansible-playbook ./testmod.yml`
+
+# Debugging
+
+If you want to break into a module and step through with the debugger, locally running the module you can do:
+
+1. Set a breakpoint in the module: `import pdb; pdb.set_trace()`
+1. Run the module on the local machine: `$ python -m pdb ./my_new_test_module.py ./args.json`
