@@ -7,6 +7,7 @@
 - [Local/direct module testing](#localdirect-module-testing)
 - [Playbook module testing](#playbook-module-testing)
 - [Debugging (local)](#debugging-local)
+- [Unit testing](#unit-testing)
 
 ### Why?
 
