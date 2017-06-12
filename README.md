@@ -8,6 +8,7 @@
 - [Playbook module testing](#playbook-module-testing)
 - [Debugging (local)](#debugging-local)
 - [Unit testing](#unit-testing)
+- Integration testing (coming soon)
 
 ### Why?
 
