@@ -96,7 +96,11 @@ EXAMPLES = '''
 '''
 
 RETURN = '''
-
+original_message:
+    description: The original name param that was passed in
+    type: str
+message:
+    description: The output message that the sample module generates
 '''
 
 from ansible.module_utils.basic import AnsibleModule
