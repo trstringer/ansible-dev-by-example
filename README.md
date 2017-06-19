@@ -9,6 +9,8 @@
 - [Debugging (local)](#debugging-local)
 - [Unit testing](#unit-testing)
 - Integration testing (coming soon)
+- [Communication and development support](#communication-and-development-support)
+- [Credit](#credit)
 
 ### Why?
 
@@ -236,3 +238,11 @@ To run pytest against a single test module, you can do the following (provide th
 ```
 $ pytest -r a --cov=. --cov-report=html --fulltrace --color yes test/units/modules/.../test_my_new_test_module.py
 ```
+
+# Communication and development support
+
+Join the IRC channel `#ansible-devel` for discussions surrounding Ansible development.
+
+# Credit
+
+A *huge* thank you to the Ansible team at Red Hat for providing not only a great product but also the willingness to help out contributors!
