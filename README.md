@@ -7,6 +7,7 @@
 - [Local/direct module testing](#localdirect-module-testing)
 - [Playbook module testing](#playbook-module-testing)
 - [Debugging (local)](#debugging-local)
+- [Debugging (remote)](#debugging-remote)
 - [Unit testing](#unit-testing)
 - Integration testing (coming soon)
 - [Communication and development support](#communication-and-development-support)
