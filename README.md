@@ -230,3 +230,9 @@ Unit tests for modules will be appropriately located in `./test/units/modules`. 
 - To run all tests do the following: `$ ansible-test units --python 3.5` (you must run `. hacking/env-setup` prior to this)
 
 :bulb: Ansible uses pytest for unit testing
+
+To run pytest against a single test module, you can do the following (provide the path to the test module appropriately):
+
+```
+$ pytest -r a --cov=. --cov-report=html --fulltrace --color yes test/units/modules/.../test_my_new_test_module.py
+```
