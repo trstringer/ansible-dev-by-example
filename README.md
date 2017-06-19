@@ -241,7 +241,9 @@ $ pytest -r a --cov=. --cov-report=html --fulltrace --color yes test/units/modul
 
 # Communication and development support
 
-Join the IRC channel `#ansible-devel` for discussions surrounding Ansible development.
+Join the IRC channel `#ansible-devel` on freenode for discussions surrounding Ansible development.
+
+For questions and discussions pertaining to using the Ansible product, use the `#ansible` channel.
 
 # Credit
 
