@@ -41,63 +41,122 @@ If you are creating a new module that doesn't exist, you would start working on 
 - Create your new module file: `$ touch my_new_test_module.py`
 - Paste this simple into the new module file: (explanation in comments)
 ```python
-#!/usr/bin/env python
+#!/usr/bin/python
+
+ANSIBLE_METADATA = {
+    'metadata_version': '1.0',
+    'status': ['preview'],
+    'supported_by': 'curated'
+}
+
+DOCUMENTATION = '''
+---
+module: my_sample_module
+
+short_description: This is my sample module
+
+version_added: "2.4"
+
+description:
+    - "This is my longer description explaining my sample module"
+
+options:
+    name:
+        description:
+            - This is the message to send to the sample module
+        required: true
+    new:
+        description:
+            - Control to demo if the result of this module is changed or not
+        required: false
+
+extends_documentation_fragment
+    - azure
+
+author:
+    - Your Name (@yourhandle)
+'''
+
+EXAMPLES = '''
+# Pass in a message
+- name: Test with a message
+  my_new_test_module:
+    name: hello world
+
+# pass in a message and have changed true
+- name: Test with a message and changed output
+  my_new_test_module:
+    name: hello world
+    new: true
+
+# fail the module
+- name: Test failure of the module
+  my_new_test_module:
+    name: fail me
+'''
+
+RETURN = '''
+
+'''
 
 from ansible.module_utils.basic import AnsibleModule
 
-class MyModule:
+def run_module():
+    # define the available arguments/parameters that a user can pass to
+    # the module
+    module_args = dict(
+        name=dict(type='str', required=True),
+        new=dict(type='bool', required=False, default=False)
+    )
 
-    def __init__(self):
-        # define the available arguments/parameters that a user can pass to
-        # the module
-        self.module_args = dict(
-            name=dict(type='str', required=True),
-            new=dict(type='bool', required=False, default=False)
-        )
+    # seed the result dict in the object
+    # we primarily care about changed and state
+    # change is if this module effectively modified the target
+    # state will include any data that you want your module to pass back
+    # for consumption, for example, in a subsequent task
+    result = dict(
+        changed=False,
+        original_message=''
+        message=''
+    )
 
-        # seed the result dict in the object
-        # we primarily care about changed and state
-        # change is if this module effectively modified the target
-        # state will include any data that you want your module to pass back
-        # for consumption, for example, in a subsequent task
-        self.result = dict(
-            changed=False,
-            state=dict()
-        )
+    # the AnsibleModule object will be our abstraction working with Ansible
+    # this includes instantiation, a couple of common attr would be the
+    # args/params passed to the execution, as well as if the module
+    # supports check mode
+    module = AnsibleModule(
+        argument_spec=module_args,
+        supports_check_mode=True
+    )
 
-        # the AnsibleModule object will be our abstraction working with Ansible
-        # this includes instantiation, a couple of common attr would be the
-        # args/params passed to the execution, as well as if the module
-        # supports check mode
-        self.module = AnsibleModule(
-            argument_spec=self.module_args,
-            supports_check_mode=True
-        )
+    # if the user is working with this module in only check mode we do not
+    # want to make any changes to the environment, just return the current
+    # state with no modifications
+    if module.check_mode:
+        return result
 
-        # manipulate or modify the state as needed (this is going to be the
-        # part where your module will do what it needs to do)
-        self.result['state'] = dict(
-            original_message=self.module.params['name'],
-            new_message='goodbye'
-        )
+    # manipulate or modify the state as needed (this is going to be the
+    # part where your module will do what it needs to do)
+    result['original_message'] = module.params['name']
+    result['message'] = 'goodbye'
 
-        # use whatever logic you need to determine whether or not this module
-        # made any modifications to your target
-        if self.module.params['new']:
-            self.result['changed'] = True
+    # use whatever logic you need to determine whether or not this module
+    # made any modifications to your target
+    if module.params['new']:
+        result['changed'] = True
 
-        # during the execution of the module, if there is an exception or a
-        # conditional state that effectively causes a failure, run
-        # AnsibleModule.fail_json() to pass in the message and the result
-        if self.module.params['name'] == 'fail me':
-            self.module.fail_json(msg='You requested this to fail', **self.result)
+    # during the execution of the module, if there is an exception or a
+    # conditional state that effectively causes a failure, run
+    # AnsibleModule.fail_json() to pass in the message and the result
+    if module.params['name'] == 'fail me':
+        module.fail_json(msg='You requested this to fail', **result)
 
-        # in the event of a successful module execution, you will want to
-        # simple AnsibleModule.exit_json(), passing the key/value results
-        self.module.exit_json(**self.result)
+    # in the event of a successful module execution, you will want to
+    # simple AnsibleModule.exit_json(), passing the key/value results
+    module.exit_json(**result)
 
 def main():
-    MyModule()
+    run_module()
 
 if __name__ == '__main__':
     main()
@@ -125,7 +184,7 @@ This should be working output that resembles something like the following:
 {"changed": true, "state": {"original_message": "hello", "new_message": "goodbye"}, "invocation": {"module_args": {"name": "hello", "new": true}}}
 ```
 
-:bulb: The arguments file is just a basic json config file that you can use to pass the module your parameters to run the module itself.
+:bulb: The arguments file is just a basic json config file that you can use to pass the module your parameters to run the module it
 
 # Playbook module testing
 
