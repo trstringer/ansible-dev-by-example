@@ -182,8 +182,9 @@ You may want to test the module on the local machine without targeting a remote 
   }
 }
 ```
-- Ensure that you can directly execute your new module: `$ chmod 755 ./my_new_test_module.py`
-- Run your test module locally and directly: `$ ./my_new_test_module.py /tmp/args.json`
+- If you are using a virtual environment (highly recommended for development) activate it: `$ . venv/bin/activate`
+- Setup the environment for development: `$ . hacking/env-setup`
+- Run your test module locally and directly: `$ python ./my_new_test_module.py /tmp/args.json`
 
 This should be working output that resembles something like the following:
 
