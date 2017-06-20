@@ -123,7 +123,7 @@ def run_module():
     # for consumption, for example, in a subsequent task
     result = dict(
         changed=False,
-        original_message=''
+        original_message='',
         message=''
     )
 
@@ -173,7 +173,7 @@ if __name__ == '__main__':
 
 You may want to test the module on the local machine without targeting a remote host. This is a great way to quickly and easily debug a module that can run locally.
 
-- Create an arguments file with the following content: (explanation below)
+- Create an arguments file in `/tmp/args.json` with the following content: (explanation below)
 ```json
 {
   "ANSIBLE_MODULE_ARGS": {
@@ -183,7 +183,7 @@ You may want to test the module on the local machine without targeting a remote 
 }
 ```
 - Ensure that you can directly execute your new module: `$ chmod 755 ./my_new_test_module.py`
-- Run your test module locally and directly: `$ ./my_new_testmodule.py /tmp/args.json`
+- Run your test module locally and directly: `$ ./my_new_test_module.py /tmp/args.json`
 
 This should be working output that resembles something like the following:
 
