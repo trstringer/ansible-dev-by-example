@@ -36,6 +36,8 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 
 :bulb: Starting new development now? Fixing a bug? Create a new branch: `$ git checkout -b my-new-branch`. If you are planning on contributing back to the main Ansible repostiry, fork the Ansible repository into your own GitHub account and developing against your new non-devel branch in your fork. When you believe you have a good working code change, submit a pull request to the Ansible repository.
 
+:bulb: :bulb: Submitting a new module to the upstream Ansible repo? Run through sanity checks first: `$ ansible-test sanity -v --tox --python 2.7 MODULE_NAME`
+
 # New module development
 
 If you are creating a new module that doesn't exist, you would start working on a whole new file. Here is an example:
