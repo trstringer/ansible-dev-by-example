@@ -30,6 +30,7 @@ This documentation is a way to show step-by-step how to develop Ansible modules,
 1. Create a virtual environment: `$ python3 -m venv venv` (or for Python 2 `$ virtualenv venv`. Note, this requires you to install the virtualenv package: `$ pip install virtualenv`)
 1. Activate the virtual environment: `$ . venv/bin/activate`
 1. Install development requirements: `$ pip install -r requirements.txt`
+1. Install Azure SDK dependencies: `$ pip install .[azure]`
 1. Run the environment setup script for each new dev shell process: `$ . hacking/env-setup`
 
 :zap: After the initial setup above, every time you are ready to start developing Ansible you should be able to just run the following from the root of the Ansible repo: `$ . venv/bin/activate && . hacking/env-setup`
